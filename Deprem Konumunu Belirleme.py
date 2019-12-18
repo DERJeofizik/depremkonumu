@@ -88,6 +88,8 @@ def download(eqname, t0, min_length=600):
     makedir(stationxml_dir)
 
     mdl = MassDownloader(providers=["http://eida.koeri.boun.edu.tr:8080"])
+    # Kandilli FDSN matchtimeseries=True icin bos istasyon listesi donduruyor.
+    mdl._initialized_clients["http://eida.koeri.boun.edu.tr:8080"].services["station"].pop("matchtimeseries")
     mdl.download(domain, restrictions,
                  mseed_storage=waveform_dir,
                  stationxml_storage=stationxml_dir)
